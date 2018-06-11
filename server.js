@@ -2,8 +2,10 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
-hbs.registerPartials(__dirname + '/views/partials');
+const port = process.env.PORT || 3000;
 var app = express();
+hbs.registerPartials(__dirname + '/views/partials');
+
 app.set('view engine', 'hbs');
 app.use((req, res, next) => {
     var now = new Date().toString();
@@ -42,6 +44,6 @@ app.get('/about', (req, res) => {
         pageTitle: 'About Page',
     });
 });
-app.listen(3000, () => {
-    console.log('server is up and running on port 3000');
+app.listen(port, () => {
+    console.log(`server is up and running on port ${port}`);
 });
